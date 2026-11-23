@@ -1,0 +1,65 @@
+### REST Client (VS Code) — jalankan backend pada http://localhost:3000
+@baseUrl = http://localhost:3000
+@missingId = 00000000-0000-4000-8000-000000000000
+
+### 1. GET semua data (200)
+GET {{baseUrl}}/visit-plans
+
+### 2. POST tambah data (201)
+# @name createPlan
+POST {{baseUrl}}/visit-plans
+Content-Type: application/json
+
+{
+  "name": "Liburan Akhir Pekan",
+  "destinationId": "baturraden",
+  "destinationName": "Lokawisata Baturraden",
+  "visitDate": "2027-01-20",
+  "participantCount": 2,
+  "isCompleted": false
+}
+
+### 3. GET satu data (200) — jalankan POST di atas terlebih dahulu
+GET {{baseUrl}}/visit-plans/{{createPlan.response.body.$.id}}
+
+### 4. POST duplikat (409 Conflict) — jalankan sebelum PATCH/DELETE
+POST {{baseUrl}}/visit-plans
+Content-Type: application/json
+
+{
+  "name": "Liburan Akhir Pekan",
+  "destinationId": "baturraden",
+  "destinationName": "Lokawisata Baturraden",
+  "visitDate": "2027-01-20",
+  "participantCount": 2,
+  "isCompleted": false
+}
+
+### 5. PATCH edit data (200)
+PATCH {{baseUrl}}/visit-plans/{{createPlan.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "name": "Liburan Bersama Keluarga",
+  "participantCount": 4,
+  "isCompleted": true
+}
+
+### 6. POST data tidak valid (400 Bad Request)
+POST {{baseUrl}}/visit-plans
+Content-Type: application/json
+
+{
+  "name": "X",
+  "destinationId": "baturraden",
+  "destinationName": "Lokawisata Baturraden",
+  "visitDate": "tanggal-salah",
+  "participantCount": 0,
+  "isCompleted": "bukan-boolean"
+}
+
+### 7. DELETE hapus data (200)
+DELETE {{baseUrl}}/visit-plans/{{createPlan.response.body.$.id}}
+
+### 8. GET ID tidak ada (404 Not Found)
+GET {{baseUrl}}/visit-plans/{{missingId}}
