@@ -102,12 +102,6 @@ npm run build
 4. Klik **Hapus** → `DELETE` → card menghilang.
 5. Refresh halaman selama backend **masih berjalan** → `GET` memuat data kembali. Jika backend direstart, data reset karena tidak ada database.
 
-## Dokumentasi / screenshot untuk pengumpulan
-
-Letakkan screenshot *asli* hasil menjalankan aplikasi di `docs/screenshots/`. Daftar screenshot yang diperlukan ada di [`docs/screenshots/README.md`](docs/screenshots/README.md). Contoh screenshot REST Client belum disertakan karena harus diambil dari pengujian nyata pada komputer pengumpul.
-
-**Pengumpulan:** push frontend dan backend ke satu repository GitHub, pastikan README dan screenshot ikut ter-upload, kemudian kumpulkan **link repository** melalui LMS (bukan ZIP, kecuali ada instruksi lain dari dosen).
-
 ## Struktur proyek
 
 ```text
@@ -123,5 +117,3 @@ Jelajah-Banyumas-Tugas9/
 ├── package.json         # frontend
 └── README.md
 ```
-
-> **Catatan**: ZIP hasil revisi tidak menyertakan folder `.git`, `node_modules`, atau `dist` agar aman dan ringan. Proyek ini **belum dipush ke akun GitHub mana pun**. Jalankan `npm install` secara terpisah di root dan `backend` setelah ekstrak.
